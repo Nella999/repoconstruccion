@@ -25,7 +25,13 @@ export class ProductosComponent {
     { id: 3, nombre: 'Arreglo de tulipanes', categoria: 'Tulipanes', precio: 60, stock: 5 },
     { id: 4, nombre: 'Ramo de margaritas', categoria: 'Margaritas', precio: 30, stock: 0 },
     { id: 5, nombre: 'Caja de rosas', categoria: 'Rosas', precio: 75, stock: 4 },
-    { id: 6, nombre: 'Arreglo de flores mixtas', categoria: 'Variadas', precio: 55, stock: 0 }
+    { id: 6, nombre: 'Arreglo de flores mixtas', categoria: 'Variadas', precio: 55, stock: 0 },
+    { id: 7, nombre: 'Bouquet de lirios', categoria: 'Lirios', precio: 52, stock: 7 },
+    { id: 8, nombre: 'Arreglo de orquídeas', categoria: 'Orquídeas', precio: 90, stock: 3 },
+    { id: 9, nombre: 'Ramo de peonías', categoria: 'Peonías', precio: 68, stock: 0 },
+    { id: 10, nombre: 'Caja de tulipanes', categoria: 'Tulipanes', precio: 58, stock: 6 },
+    { id: 11, nombre: 'Arreglo premium', categoria: 'Premium', precio: 120, stock: 2 },
+    { id: 12, nombre: 'Ramo de flores silvestres', categoria: 'Variadas', precio: 40, stock: 9 }
   ];
 
   contarDisponibles(): number {
