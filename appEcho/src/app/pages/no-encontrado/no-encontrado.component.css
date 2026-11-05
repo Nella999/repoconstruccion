@@ -1,0 +1,35 @@
+.no-encontrado {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #e7e0f1;
+  min-height: 70vh;
+}
+
+.no-encontrado h1 {
+  font-size: 70px;
+  color: #879365;
+  margin-bottom: 10px;
+}
+
+.no-encontrado h2 {
+  color: #68734b;
+}
+
+.no-encontrado p {
+  color: #45483d;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.no-encontrado a {
+  display: inline-block;
+  background-color: #879365;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.no-encontrado a:hover {
+  background-color: #6e7950;
+}

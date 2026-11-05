@@ -1,0 +1,46 @@
+.inicio {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #e7e0f1;
+}
+
+.inicio h2 {
+  color: #68734b;
+}
+
+.inicio p {
+  line-height: 1.6;
+}
+
+.boton {
+  display: inline-block;
+  background-color: #879365;
+  color: white;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.boton:hover {
+  background-color: #6e7950;
+}
+
+.informacion {
+  text-align: center;
+  padding: 25px;
+}
+
+.tarjetas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tarjeta {
+  background-color: #e0e4d1;
+  padding: 15px;
+  width: 200px;
+  border-radius: 8px;
+}
