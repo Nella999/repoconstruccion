@@ -1,59 +1,78 @@
 # AppEcho
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 22.2.6.
 
-## Development server
+## Descripción general
 
-To start a local development server, run:
+AppEcho es una pequeña aplicación web desarrollada con Angular para una tienda de flores y arreglos florales. La interfaz permite mostrar una página de inicio, navegar a una sección de productos y presentar una vista de error cuando la ruta no existe.
+
+## Características principales
+
+- Página principal con mensaje promocional de la tienda.
+- Navegación entre inicio y productos.
+- Catálogo de arreglos con información de productos.
+- Indicadores de disponibilidad y agotado.
+- Diseño visual simple y amigable con estilos personalizados.
+- Manejo de rutas con Angular Router.
+
+## Servidor de desarrollo
+
+Para iniciar un servidor local, ejecuta:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Cuando el servidor esté en funcionamiento, abre tu navegador y accede a `http://localhost:4200/`. La aplicación se recargará automáticamente cada vez que modifiques alguno de los archivos.
 
-## Code scaffolding
+## Generación de componentes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular CLI incluye herramientas para crear componentes rápidamente. Por ejemplo:
 
 ```bash
-ng generate component component-name
+ng generate component nombre-componente
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para ver la lista completa de comandos y plantillas disponibles, usa:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+## Compilación
 
-To build the project run:
+Para compilar la aplicación, ejecuta:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Esto genera la versión compilada en la carpeta `dist/`. La construcción de producción optimiza el rendimiento y el tamaño de la aplicación.
 
-## Running unit tests
+## Pruebas unitarias
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Para ejecutar pruebas unitarias, usa:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Pruebas end-to-end
 
-For end-to-end (e2e) testing, run:
+Para pruebas E2E, puedes ejecutar:
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Angular CLI no incluye un framework de pruebas end-to-end por defecto, pero puedes agregar uno según las necesidades del proyecto.
 
-## Additional Resources
+## Recursos adicionales
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para más información sobre Angular CLI y sus comandos, consulta la documentación oficial:
+
+[Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
+
+## Nota final
+
+Este proyecto sirve como ejemplo de una aplicación básica con Angular, enfocada en la estructura de una tienda de flores, el uso de componentes, rutas y estilos personalizados para crear una experiencia visual simple y funcional.

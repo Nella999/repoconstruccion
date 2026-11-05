@@ -13,6 +13,4 @@ export class NoEncontradoComponent {
 
   codigoError = 404;
 
-  mensaje = 'Lo sentimos, la página que buscas no existe.';
-
 }
