@@ -1,0 +1,198 @@
+
+<h1>Registro de arreglos florales</h1>
+
+<form #miForm="ngForm" (ngSubmit)="onSubmit(miForm)">
+
+  <div>
+    <label>Nombre del cliente:</label>
+    <input type="text" name="cliente" ngModel required
+           #cliente="ngModel" minlength="3">
+
+    <div class="error" *ngIf="cliente.invalid && cliente.touched">
+      <span *ngIf="cliente.errors?.['required']">
+        El nombre es obligatorio.
+      </span>
+      <span *ngIf="cliente.errors?.['minlength']">
+        Mínimo 3 caracteres.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label>Nombre del arreglo:</label>
+    <input type="text" name="arreglo" ngModel required
+           #arreglo="ngModel">
+
+    <div class="error" *ngIf="arreglo.invalid && arreglo.touched">
+      El nombre del arreglo es obligatorio.
+    </div>
+  </div>
+
+<div>
+  <label>Tipos de flores:</label>
+
+  <div class="flores">
+
+    <label>
+      <input type="checkbox"
+        [checked]="floresSeleccionadas.includes('Rosas')"
+        (change)="toggleFlor('Rosas', $event)">
+      Rosas
+    </label>
+
+    <label>
+      <input type="checkbox"
+        [checked]="floresSeleccionadas.includes('Tulipanes')"
+        (change)="toggleFlor('Tulipanes', $event)">
+      Tulipanes
+    </label>
+
+    <label>
+      <input type="checkbox"
+        [checked]="floresSeleccionadas.includes('Girasoles')"
+        (change)="toggleFlor('Girasoles', $event)">
+      Girasoles
+    </label>
+
+    <label>
+      <input type="checkbox"
+        [checked]="floresSeleccionadas.includes('Lirios')"
+        (change)="toggleFlor('Lirios', $event)">
+      Lirios
+    </label>
+
+    <label>
+      <input type="checkbox"
+        [checked]="floresSeleccionadas.includes('Margaritas')"
+        (change)="toggleFlor('Margaritas', $event)">
+      Margaritas
+    </label>
+
+  </div>
+</div>
+
+<div>
+    <label>Cantidad de flores:</label>
+    <input type="number" name="cantidad" ngModel required
+           min="1" max="500" #cantidad="ngModel">
+
+    <div class="error" *ngIf="cantidad.invalid && cantidad.touched">
+      <span *ngIf="cantidad.errors?.['required']">
+        La cantidad es obligatoria.
+      </span>
+      <span *ngIf="cantidad.errors?.['min']">
+        La cantidad mínima es 1.
+      </span>
+      <span *ngIf="cantidad.errors?.['max']">
+        La cantidad máxima es 500.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label>Precio (S/):</label>
+    <input type="number" name="precio" ngModel required
+           min="1" #precio="ngModel">
+
+    <div class="error" *ngIf="precio.invalid && precio.touched">
+      Ingrese un precio válido mayor a 0.
+    </div>
+  </div>
+
+  <div>
+    <label>Color del arreglo:</label>
+
+    <div class="radios">
+      <label>
+        <input type="radio" name="color" value="Rojo"
+               ngModel required #color="ngModel"> Rojo
+      </label>
+
+      <label>
+        <input type="radio" name="color" value="Rosa"
+               ngModel required> Rosa
+      </label>
+
+      <label>
+        <input type="radio" name="color" value="Blanco"
+               ngModel required> Blanco
+      </label>
+
+      <label>
+        <input type="radio" name="color" value="Amarillo"
+               ngModel required> Amarillo
+      </label>
+    </div>
+  </div>
+
+    <div class="error" *ngIf="color.invalid && color.touched">
+        Seleccione un color.
+    </div>
+
+  <div>
+    <label>Fecha de entrega:</label>
+    <input type="date" name="fecha" ngModel required
+           #fecha="ngModel">
+
+    <div class="error" *ngIf="fecha.invalid && fecha.touched">
+      Seleccione una fecha.
+    </div>
+  </div>
+
+  <div>
+    <label>Descripción:</label>
+    <textarea name="descripcion" ngModel required
+              maxlength="500" #descripcion="ngModel">
+    </textarea>
+
+    <div class="error" *ngIf="descripcion.invalid && descripcion.touched">
+      <span *ngIf="descripcion.errors?.['required']">
+        La descripción es obligatoria.
+      </span>
+      <span *ngIf="descripcion.errors?.['maxlength']">
+        Máximo 50 caracteres.
+      </span>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="miForm.invalid">
+    Registrar arreglo
+  </button>
+
+</form>
+
+
+<h2>Arreglos registrados</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Arreglo</th>
+      <th>Flor</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Color</th>
+      <th>Fecha</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of registros">
+      <td>{{item.cliente}}</td>
+      <td>{{item.arreglo}}</td>
+      <td>{{item.tipoFlor}}</td>
+      <td>{{item.cantidad}}</td>
+      <td>S/ {{item.precio}}</td>
+      <td>{{item.color}}</td>
+      <td>{{item.fecha}}</td>
+      <td>{{item.descripcion}}</td>
+      <td>{{item.flores.join(', ')}}</td>
+    </tr>
+
+    <tr *ngIf="registros.length === 0">
+      <td colspan="8">No hay registros todavía.</td>
+    </tr>
+  </tbody>
+</table>

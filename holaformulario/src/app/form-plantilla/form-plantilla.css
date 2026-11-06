@@ -1,0 +1,131 @@
+
+h1 {
+  text-align: center;
+  color: #80639b;
+}
+
+h2 {
+  color: #718653;
+  margin-top: 30px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 25px;
+  background-color: #f4eff8;
+  border-radius: 12px;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #51445e;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c9b9d8;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.radios label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+.radios input {
+  width: auto;
+  margin-right: 5px;
+}
+
+.error {
+  color: #d62828;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #788b59;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #586d40;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #80639b;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #d5c9df;
+  padding: 10px;
+  text-align: center;
+}
+
+td {
+  background-color: #faf8fc;
+}
+
+select[multiple] {
+  height: 120px;
+  padding: 8px;
+}
+
+select[multiple] option {
+  padding: 6px;
+}
+
+.flores {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flores label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+}
+
+.flores input {
+  width: auto;
+}
