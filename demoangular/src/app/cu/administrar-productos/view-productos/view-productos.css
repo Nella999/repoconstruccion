@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 16px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+th {
+  background: #f3f3f3;
+}
+
+button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #125ca8;
+}
+
+td[colspan="5"] {
+  text-align: center;
+  color: #666;
+}
