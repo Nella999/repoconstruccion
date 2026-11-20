@@ -10,20 +10,58 @@ AppEcho es una pequeña aplicación web desarrollada con Angular para una tienda
 
 - Página principal con mensaje promocional de la tienda.
 - Navegación entre inicio y productos.
-- Catálogo de arreglos con información de productos.
+- Catálogo de arreglos consultado desde una API REST Spring Boot.
+- Registro de arreglos mediante una solicitud POST desde el formulario Angular.
 - Indicadores de disponibilidad y agotado.
 - Diseño visual simple y amigable con estilos personalizados.
 - Manejo de rutas con Angular Router.
 
-## Servidor de desarrollo
+## Levantar la aplicación en el laboratorio
 
-Para iniciar un servidor local, ejecuta:
+Se necesitan Java 25, Maven y Node.js/npm. Ejecuta cada proceso en una terminal distinta desde la raíz del repositorio.
+
+### 1. Iniciar el backend Spring Boot
 
 ```bash
-ng serve
+cd appEcho/backend
+mvn spring-boot:run
 ```
 
-Cuando el servidor esté en funcionamiento, abre tu navegador y accede a `http://localhost:4200/`. La aplicación se recargará automáticamente cada vez que modifiques alguno de los archivos.
+La API queda disponible en `http://localhost:8080`:
+
+- `GET http://localhost:8080/api/productos`: lista el catálogo.
+- `POST http://localhost:8080/api/productos`: registra un arreglo. Ejemplo del JSON:
+
+```json
+{
+  "nombre": "Ramo de rosas blancas",
+  "categoria": "Rosas",
+  "precio": 49.9,
+  "stock": 5
+}
+```
+
+El catálogo se mantiene en memoria y vuelve a los datos iniciales al reiniciar Spring Boot. CORS permite el origen local de Angular (`http://localhost:4200`).
+
+### 2. Iniciar Angular
+
+En otra terminal, desde la raíz del repositorio:
+
+```bash
+cd appEcho
+npm install
+npm start
+```
+
+Abre `http://localhost:4200/` y entra en **Nuestros arreglos**. La vista consulta el catálogo al abrirse y también ofrece el botón **Consultar catálogo (GET)**. Completa y envía el formulario para hacer el POST y agregar la respuesta a la tabla. Para la demostración, deja ambas terminales ejecutándose.
+
+### Cómo se integraron
+
+1. `ProductosService` usa `HttpClient` para las operaciones GET/POST contra `/api/productos`.
+2. `provideHttpClient()` habilita las solicitudes HTTP de Angular.
+3. La vista `productos.component.html` presenta el formulario y el catálogo. Su componente dispara el GET al inicializarse y el POST al enviar el formulario.
+4. `ProductoController` expone los endpoints REST, responde JSON y habilita CORS para el servidor local de Angular.
+5. El backend asigna un ID a cada producto nuevo y mantiene las altas en memoria mientras el proceso sigue activo.
 
 ## Generación de componentes
 

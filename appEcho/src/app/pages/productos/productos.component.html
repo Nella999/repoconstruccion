@@ -2,12 +2,43 @@
 <section class="catalogo">
 
   <div class="titulo-catalogo">
-    <span class="etiqueta">appecho / CATÁLOGO</span>
+    <span class="etiqueta">appEcho / CATÁLOGO</span>
 
     <h1>{{ titulo }}</h1>
 
-    <p>Conoce nuestros productos y encuentra lo que necesitas.</p>
+    <p>Datos consultados desde el backend Spring Boot.</p>
+    <button class="boton-actualizar" type="button" (click)="cargarProductos()" [disabled]="cargando">
+      {{ cargando ? 'Consultando...' : 'Consultar catálogo (GET)' }}
+    </button>
   </div>
+
+  <form class="formulario-producto" #formularioProducto="ngForm" (ngSubmit)="guardarProducto()">
+    <h2>Registrar un arreglo</h2>
+    <div class="campos-formulario">
+      <label>
+        Nombre
+        <input name="nombre" [(ngModel)]="nuevoProducto.nombre" required maxlength="100">
+      </label>
+      <label>
+        Categoría
+        <input name="categoria" [(ngModel)]="nuevoProducto.categoria" required maxlength="60">
+      </label>
+      <label>
+        Precio (S/)
+        <input name="precio" type="number" [(ngModel)]="nuevoProducto.precio" required min="0" step="0.01">
+      </label>
+      <label>
+        Stock
+        <input name="stock" type="number" [(ngModel)]="nuevoProducto.stock" required min="0" step="1">
+      </label>
+      <button type="submit" [disabled]="formularioProducto.invalid || guardando">
+        {{ guardando ? 'Guardando...' : 'Registrar producto' }}
+      </button>
+    </div>
+  </form>
+
+  <p class="mensaje error" role="alert" *ngIf="error">{{ error }}</p>
+  <p class="mensaje exito" role="status" *ngIf="mensaje">{{ mensaje }}</p>
 
   <div class="resumen">
     <div class="tarjeta-resumen">
@@ -32,8 +63,9 @@
 
   <div class="tabla-contenedor">
 
-    <table>
+    <p class="estado-carga" *ngIf="cargando">Cargando catálogo...</p>
 
+    <table *ngIf="!cargando && productos.length > 0">
       <thead>
         <tr>
           <th>Código</th>
@@ -77,6 +109,10 @@
       </tbody>
 
     </table>
+
+    <p class="estado-carga" *ngIf="!cargando && productos.length === 0 && !error">
+      No hay productos registrados.
+    </p>
 
   </div>
 

@@ -1,38 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface Producto {
-  id: number;
-  nombre: string;
-  categoria: string;
-  precio: number;
-  stock: number;
-}
+import { FormsModule } from '@angular/forms';
+import { NuevoProducto, Producto, ProductosService } from '../../services/productos.service';
 
 @Component({
   selector: 'app-productos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css'
 })
-export class ProductosComponent {
-  titulo = 'Nuestros arreglos florales';
+export class ProductosComponent implements OnInit {
+  private readonly productosService = inject(ProductosService);
 
-  productos: Producto[] = [
-    { id: 1, nombre: 'Ramo de rosas rojas', categoria: 'Rosas', precio: 45, stock: 10 },
-    { id: 2, nombre: 'Ramo de girasoles', categoria: 'Girasoles', precio: 35, stock: 8 },
-    { id: 3, nombre: 'Arreglo de tulipanes', categoria: 'Tulipanes', precio: 60, stock: 5 },
-    { id: 4, nombre: 'Ramo de margaritas', categoria: 'Margaritas', precio: 30, stock: 0 },
-    { id: 5, nombre: 'Caja de rosas', categoria: 'Rosas', precio: 75, stock: 4 },
-    { id: 6, nombre: 'Arreglo de flores mixtas', categoria: 'Variadas', precio: 55, stock: 0 },
-    { id: 7, nombre: 'Bouquet de lirios', categoria: 'Lirios', precio: 52, stock: 7 },
-    { id: 8, nombre: 'Arreglo de orquídeas', categoria: 'Orquídeas', precio: 90, stock: 3 },
-    { id: 9, nombre: 'Ramo de peonías', categoria: 'Peonías', precio: 68, stock: 0 },
-    { id: 10, nombre: 'Caja de tulipanes', categoria: 'Tulipanes', precio: 58, stock: 6 },
-    { id: 11, nombre: 'Arreglo premium', categoria: 'Premium', precio: 120, stock: 2 },
-    { id: 12, nombre: 'Ramo de flores silvestres', categoria: 'Variadas', precio: 40, stock: 9 }
-  ];
+  titulo = 'Nuestros arreglos florales';
+  productos: Producto[] = [];
+  nuevoProducto: NuevoProducto = this.productoVacio();
+  cargando = false;
+  guardando = false;
+  error = '';
+  mensaje = '';
+
+  ngOnInit(): void {
+    this.cargarProductos();
+  }
+
+  cargarProductos(): void {
+    this.cargando = true;
+    this.error = '';
+    this.productosService.listar().subscribe({
+      next: (productos) => {
+        this.productos = productos;
+        this.cargando = false;
+      },
+      error: () => {
+        this.error = 'No se pudo cargar el catálogo. Verifica que el backend esté activo.';
+        this.cargando = false;
+      }
+    });
+  }
+
+  guardarProducto(): void {
+    this.guardando = true;
+    this.error = '';
+    this.mensaje = '';
+    this.productosService.crear(this.nuevoProducto).subscribe({
+      next: (producto) => {
+        this.productos = [...this.productos, producto];
+        this.nuevoProducto = this.productoVacio();
+        this.mensaje = 'Producto registrado correctamente.';
+        this.guardando = false;
+      },
+      error: () => {
+        this.error = 'No se pudo registrar el producto. Verifica los datos y el backend.';
+        this.guardando = false;
+      }
+    });
+  }
+
+  private productoVacio(): NuevoProducto {
+    return { nombre: '', categoria: '', precio: 0, stock: 0 };
+  }
 
   contarDisponibles(): number {
     return this.productos.filter(producto => producto.stock > 0).length;
